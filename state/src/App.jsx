@@ -5,9 +5,13 @@ const COLORS = ['pink', 'green', 'blue', 'yellow', 'purple'];
 
 function App() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+  const [changeCount, setChangeCount] = useState(0);
 
   const onButtonClick = (color) => () => {
+    if (color === backgroundColor) return;
+
     setBackgroundColor(color);
+    setChangeCount(changeCount + 1);
   };
 
   return (
@@ -17,6 +21,9 @@ function App() {
         backgroundColor,
       }}
     >
+      <h2>
+        Background changed {changeCount} {changeCount > 1 ? 'times' : 'time'}.
+      </h2>
       {COLORS.map((color) => (
         <button
           type="button"
